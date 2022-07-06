@@ -1,8 +1,22 @@
 import React from "react";
 import { Text } from "react-native";
-import { Avatar, Button, Card, Paragraph, Title } from "react-native-paper";
+import { Card } from "react-native-paper";
+import styled from "styled-components";
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+const RestaurantCard = styled(Card)`
+  background-color: white;
+`;
+
+const RestaurantCardCover = styled(Card.Cover)`
+  background-color: white;
+  padding: ${(props) => props.theme.space[3]};
+`;
+
+const Title = styled.Text`
+  font-family: ${(props) => props.theme.fonts.body};
+  padding: ${(props) => props.theme.space[3]};
+  color: ${(props) => props.theme.colors.ui.primary};
+`;
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -18,12 +32,9 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   } = restaurant;
 
   return (
-    <Card elevation={5}>
-      <Card.Cover source={{ uri: photos[0] }} />
-      <Card.Content>
-        <Title>{name}</Title>
-        <Paragraph>Content</Paragraph>
-      </Card.Content>
-    </Card>
+    <RestaurantCard elevation={5}>
+      <RestaurantCardCover source={{ uri: photos[0] }} />
+      <Title>{name}</Title>
+    </RestaurantCard>
   );
 };
