@@ -11,6 +11,7 @@ import {
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { Text } from "react-native";
+import { restaurantsRequest } from "./src/services/restaurants/restaurants.service";
 
 const Tab = createBottomTabNavigator();
 
