@@ -10,13 +10,16 @@ export const LocationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const onSearch = (searchKeyword = "antwerp") => {
+  const onSearch = (searchKeyword = "san francisco") => {
     setIsLoading(true);
     setKeyword(searchKeyword);
-    if (!searchKeyword.length) {
+  };
+
+  useEffect(() => {
+    if (!keyword.length) {
       return;
     }
-    locationRequest(searchKeyword.toLowerCase())
+    locationRequest(keyword.toLowerCase())
       .then(locationTransform)
       .then((result) => {
         setIsLoading(false);
@@ -28,11 +31,7 @@ export const LocationContextProvider = ({ children }) => {
         setError(err);
         console.log("not found");
       });
-  };
-
-  // useEffect(() => {
-  //   onSearch();
-  // }, []);
+  }, [keyword]);
 
   return (
     <LocationContext.Provider
