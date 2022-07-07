@@ -32,7 +32,7 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
 
   return (
@@ -45,9 +45,11 @@ export const RestaurantsScreen = () => {
       <Search />
       <RestaurantList
         data={restaurants}
-        renderItem={({ item }) => {
-          return <RestaurantInfoCard restaurant={item} />;
-        }}
+        renderItem={({ item }) => (
+          <Pressable onPress={() => navigation.navigate("RestaurantDetail")}>
+            <RestaurantInfoCard restaurant={item} />
+          </Pressable>
+        )}
         keyExtractor={(item) => item.name}
       />
     </SafeArea>
