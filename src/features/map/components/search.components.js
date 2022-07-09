@@ -4,7 +4,11 @@ import styled from "styled-components";
 import { LocationContext } from "../../../services/location/location.context";
 
 const SearchContainer = styled.View`
-  padding: 16px;
+  padding: ${(props) => props.theme.space[3]};
+  position: absolute;
+  z-index: 999;
+  top: 10px;
+  width: 100%;
 `;
 
 export const Search = () => {
@@ -13,6 +17,7 @@ export const Search = () => {
   const onChangeSearch = (query) => {
     setSearchKeyword(query);
   };
+
   useEffect(() => {
     setSearchKeyword(keyword);
   }, [keyword]);
@@ -24,6 +29,7 @@ export const Search = () => {
         onSubmitEditing={() => {
           search(searchKeyword);
         }}
+        icon="map"
         onChangeText={onChangeSearch}
         value={searchKeyword}
       />
