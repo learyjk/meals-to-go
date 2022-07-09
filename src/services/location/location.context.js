@@ -24,7 +24,6 @@ export const LocationContextProvider = ({ children }) => {
       .then((result) => {
         setIsLoading(false);
         setLocation(result);
-        console.log("search result", result);
       })
       .catch((err) => {
         setIsLoading(false);
